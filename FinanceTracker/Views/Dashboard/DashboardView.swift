@@ -47,8 +47,21 @@ struct DashboardView: View {
             Text("Total Spent")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
-            Text(viewModel.totalSpent, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
-                .font(.system(size: 34, weight: .bold, design: .rounded))
+            
+            HStack(spacing: 8) { // Explicit spacing makes layout predictable
+                Text(viewModel.totalSpent, format: .number) // Ensures localized digit shapes
+                    .font(.system(size: 34, weight: .bold, design: .rounded))
+                
+                Image("SAR")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 25, height: 25)
+            }
+            .environment(\.layoutDirection, .rightToLeft) // Use this line ONLY to force test RTL
+
+            
+            
+            
         }
     }
 
@@ -118,9 +131,15 @@ struct DashboardView: View {
                         Text(item.categoryName)
                             .foregroundStyle(.primary)
                         Spacer()
+                        
+                       
                         Text(item.total, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
                             .foregroundStyle(.secondary)
                             .monospacedDigit()
+                        
+                        
+                        
+                        
                     }
                     .padding(.vertical, 10)
                 }

@@ -94,8 +94,9 @@ private struct TransactionRow: View {
             Spacer()
 
             Text(transaction.signedAmount, format: .currency(code: transaction.currencyCode))
-                .foregroundStyle(transaction.type == .expense ? .primary : .green)
+                .foregroundStyle(transaction.type == .expense ? Color.primary : Color.green)
                 .monospacedDigit()
+
 
             // Subtle sync indicator — useful for debugging + shows the
             // offline-first state honestly to the user.
