@@ -51,8 +51,9 @@ actor TransactionStore {
         let targetType = TransactionType.expense
         let descriptor = FetchDescriptor<Transaction>(
             predicate: #Predicate { tx in
-                tx.date >= startOfMonth && tx.date < startOfNextMonth &&  tx.type == targetType
+                tx.date >= startOfMonth && tx.date < startOfNextMonth 
             }
+           
         )
 
         let transactions = try modelContext.fetch(descriptor)
